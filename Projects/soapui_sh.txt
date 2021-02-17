@@ -1,0 +1,18 @@
+Wijziging in de standaard gekopieerde soapui.sh
+
+# Rinus, added:
+SOAPUI_HOME=/home/zorin/Software/SoapUI-5.6.0
+PROJECT_HOME=${PWD}/XML
+export PROJECT_HOME
+
+# Rinus, removed:
+# Setup SOAPUI_HOME
+#if [ -d $SOAPUI_HOME ]
+#then
+#    # get the full path (without any relative bits)
+#    SOAPUI_HOME=`cd $DIRNAME/..; pwd`
+#fi
+
+# Rinus, added -Duser.home=$PROJECT_HOME
+JAVA_OPTS="-Xms128m -Xmx1024m -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -Dsoapui.properties=soapui.properties -Dgroovy.source.encoding=iso-8859-1 -Duser.home=$PROJECT_HOME -Dsoapui.home=$SOAPUI_HOME/bin -splash:SoapUI-Spashscreen.png"
+

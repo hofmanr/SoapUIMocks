@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1edad0ed-f867-4846-adeb-c987e35bb5f8" activeEnvironment="Default" name="Books" resourceRoot="${projectDir}" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="371d8b6b-cfa8-47b1-9307-63fe2d221021" wsaVersion="NONE" name="BooksSOAP" type="wsdl" bindingName="{http://www.pluralsight.com/service/Books/}BooksSOAP" soapVersion="1_1" anonymous="optional" definition="../WSDL/Books.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/zorin/Workspace/SoapUIMocks/Projects/apache-cxf-books/WSDL/Books.wsdl"><con:part><con:url>file:/home/zorin/Workspace/SoapUIMocks/Projects/apache-cxf-books/WSDL/Books.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Books" targetNamespace="http://www.pluralsight.com/service/Books/" xmlns:bks="http://www.pluralsight.com/service/Books/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.pluralsight.com/service/Book">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.pluralsight.com/service/Book" schemaLocation="./Book.xsd"></xsd:import>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="FindBooksRequest">
+    <wsdl:part element="xsd1:query" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="FindBooksResponse">
+    <wsdl:part element="xsd1:findBookResult" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="Books">
+    <wsdl:operation name="FindBooks">
+      <wsdl:input message="bks:FindBooksRequest"/>
+      <wsdl:output message="bks:FindBooksResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BooksSOAP" type="bks:Books">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="FindBooks">
+      <soap:operation soapAction="http://www.pluralsight.com/service/Books/FindBooks"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Books">
+    <wsdl:port binding="bks:BooksSOAP" name="BooksSOAP">
+      <soap:address location="http://localhost:8080/apache-cxf-jax-ws-demo/services/books"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/zorin/Workspace/SoapUIMocks/Projects/apache-cxf-books/WSDL/Book.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://www.pluralsight.com/service/Book" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.pluralsight.com/service/Book">
+  <element name="query" type="tns:QueryType"/>
+  <element name="findBookResult">
+    <complexType>
+      <sequence>
+        <element name="books" type="tns:BookType" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+  <complexType name="QueryType">
+    <choice>
+      <element name="ean13" type="long"/>
+      <element name="title" type="string"/>
+      <element name="author" type="string"/>
+    </choice>
+  </complexType>
+  <complexType name="AuthorType">
+    <sequence>
+      <element name="lastName" type="string"/>
+      <element name="firstName" type="string" minOccurs="0" maxOccurs="1"></element>
+      <element name="initials" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="BookType">
+    <sequence>
+      <element name="ean13" type="long"/>
+      <element name="title" type="string"/>
+      <element name="author" type="tns:AuthorType"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/apache-cxf-jax-ws-demo/Books</con:endpoint><con:endpoint>http://localhost:9086/apache-cxf-jax-ws-demo/Books</con:endpoint></con:endpoints><con:operation id="daee711d-9d8b-470f-8248-f44ac540439c" isOneWay="false" action="http://www.pluralsight.com/service/Books/FindBooks" name="FindBooks" bindingOperationName="FindBooks" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="27255020-fb87-4ed5-9851-06d22324f3bc" name="Request Ean13"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9086/apache-cxf-jax-ws-demo/Books</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:book="http://www.pluralsight.com/service/Book">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <book:query>
+         <book:ean13>2</book:ean13>
+      </book:query>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/><con:wsrmConfig version="1.2"/></con:call><con:call id="c829a681-94c5-4aad-86c5-7ac4b7265da9" name="Request Title"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9086/apache-cxf-jax-ws-demo/Books</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:book="http://www.pluralsight.com/service/Book">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <book:query>
+         <book:title>Het huis van de moskee</book:title>
+      </book:query>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/><con:wsrmConfig version="1.2"/></con:call><con:call id="bbaba617-cf0f-4cbe-ad11-80a650251418" name="Request Author"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9086/apache-cxf-jax-ws-demo/Books</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:book="http://www.pluralsight.com/service/Book">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <book:query>
+         <book:author>mulisch</book:author>
+      </book:query>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="02a75ef6-6ece-4e7f-81cb-63363f4c4a35" name="BooksSOAP TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="d299d356-ca22-4086-9ab1-928ae4256ec8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="FindBooks TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="1ed4183e-aa82-40d7-8d6b-8ba1d04d1a5d" name="FindBooks"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BooksSOAP</con:interface><con:operation>FindBooks</con:operation><con:request name="FindBooks" id="cf3bd0c0-9547-483d-928d-fabb825b1c1e"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/apache-cxf-jax-ws-demo/Books</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:book="http://www.pluralsight.com/service/Book">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <book:query>
+         <!--You have a CHOICE of the next 3 items at this level-->
+         <book:ean13>?</book:ean13>
+         <book:title>?</book:title>
+         <book:author>?</book:author>
+      </book:query>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.pluralsight.com/service/Books/FindBooks"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="a139b05d-965b-4266-b11c-9c427471ae56" port="9086" path="/apache-cxf-jax-ws-demo/Books" host="zorin-VirtualBox" name="BOOKS-MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:startScript>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def scriptPath = groovyUtils.projectPath + "/groovy"
+GroovyScriptEngine engine = new GroovyScriptEngine(scriptPath)
+def utilsScript = engine.loadScriptByName("Utils.groovy")
+// create a runtime instance of teh script
+utils = utilsScript.newInstance()
+// put teh instance in the context
+context.utils = utils</con:startScript><con:properties><con:property><con:name>timeStamp</con:name><con:value>${=import java.text.SimpleDateFormat; new SimpleDataFormat("YYYY-MM-dd HH:mm:ss.SSS").format(new Date())}</con:value></con:property></con:properties><con:mockOperation name="FindBooks" id="2c22a3e3-33ce-4619-a5b7-87f6d2cb9286" interface="BooksSOAP" operation="FindBooks"><con:settings/><con:defaultResponse>RESP-default</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(mockRequest.requestContent)
+holder.declareNamespace( 'book', 'http://www.pluralsight.com/service/Book')
+
+// get nodes
+def nodeEan13 = holder.getDomNode("//book:ean13")
+def nodeTitle = holder.getDomNode("//book:title")
+def nodeAuthor = holder.getDomNode("//book:author")
+
+if (nodeEan13 != null) {
+	String ean13 = holder["//book:ean13"] // or holder.getNodeValue("//book:ean13")
+	log.info("Ean: " + ean13)
+	if ("0".equals(ean13))
+		return "RESP-StopMock"
+	if ("999".equals(ean13))
+		return "RESP-Ping"
+	String data = context.utils.findByEan13(context, Long.parseLong(ean13))
+	requestContext.data = data
+	return "RESP-OK"
+}
+if (nodeTitle != null) {
+	String title = holder["//book:title"]
+	log.info("Title: " + title)
+	String data = context.utils.findByTitle(context, title)
+	requestContext.data = data
+	return "RESP-OK"
+}
+if (nodeAuthor != null) {
+	String author = holder["//book:author"]
+	log.info("Author: " + author)
+	String data = context.utils.findByAuthor(context, author)
+	requestContext.data = data
+	return "RESP-OK"
+}
+return "RESP-default"
+
+</con:dispatchPath><con:response name="RESP-default" id="dbaa9f3a-28ba-4f9a-b498-0ecc723015f9" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <findBookResult xmlns="http://www.pluralsight.com/service/Book">
+         <books>
+            <ean13>1</ean13>
+            <title>Dummy book</title>
+            <author>
+               <lastName>Dummy</lastName>
+               <initials>D.</initials>
+            </author>
+         </books>
+      </findBookResult>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/></con:response><con:response name="RESP-Ping" id="dbaa9f3a-28ba-4f9a-b498-0ecc723015f9" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <findBookResult xmlns="http://www.pluralsight.com/service/Book">
+         <!-- Received Ping Request -->
+         <books>
+            <ean13>1</ean13>
+            <title>Dummy book</title>
+            <author>
+               <lastName>Dummy</lastName>
+               <initials>D.</initials>
+            </author>
+         </books>
+      </findBookResult>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/></con:response><con:response name="RESP-StopMock" id="dbaa9f3a-28ba-4f9a-b498-0ecc723015f9" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>Thread.sleep(2000)
+context.getMockRunner().stop()</con:script><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <findBookResult xmlns="http://www.pluralsight.com/service/Book">
+         <!-- Received StopMockService Request -->
+         <books>
+            <ean13>1</ean13>
+            <title>Dummy book</title>
+            <author>
+               <lastName>Dummy</lastName>
+               <initials>D.</initials>
+            </author>
+         </books>
+      </findBookResult>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/></con:response><con:response name="RESP-OK" id="dbaa9f3a-28ba-4f9a-b498-0ecc723015f9" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   &lt;soap:Body>
+       ${data}
+   &lt;/soap:Body>
+&lt;/soap:Envelope></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.pluralsight.com/service/Books/FindBooks"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

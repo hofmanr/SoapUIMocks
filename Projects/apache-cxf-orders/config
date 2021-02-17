@@ -1,0 +1,9 @@
+MOCKSERVICE=ORDERS-MockService
+PROJECT_XML=XML/Orders-soapui-project.xml
+SERVICE_URL=/apache-cxf-jax-ws-demo/Orders
+INSTANCE=SOAPORDERS
+HOST=localhost
+PORT=9085
+STOP_REQUEST=stop_request.xml
+PING_REQUEST=ping_request.xml
+LOGBASE="/tmp/SoapUI/${MOCKSERVICE}"

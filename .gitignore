@@ -1,0 +1,13 @@
+# Log file
+*.log
+
+# so files
+*.so
+
+# Mac
+.DS_Store
+
+# Java files
+.java/
+.openjfx/
+cache/

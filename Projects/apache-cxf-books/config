@@ -1,0 +1,9 @@
+MOCKSERVICE=BOOKS-MockService
+PROJECT_XML=XML/Books-soapui-project.xml
+SERVICE_URL=/apache-cxf-jax-ws-demo/Books
+INSTANCE=SOAPBOOKS
+HOST=localhost
+PORT=9086
+STOP_REQUEST=stop_request.xml
+PING_REQUEST=ping_request.xml
+LOGBASE="/tmp/SoapUI/${MOCKSERVICE}"

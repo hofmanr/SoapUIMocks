@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.pluralsight.com/service/Book"
+        xmlns:tns="http://www.pluralsight.com/service/Book" elementFormDefault="qualified">
+
+
+    <element name="query" type="tns:QueryType"></element>
+
+    <element name="findBookResult">
+        <complexType>
+            <sequence>
+                <element name="books" type="tns:BookType" minOccurs="0" maxOccurs="unbounded"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="QueryType">
+        <choice>
+            <element name="ean13" type="long"></element>
+            <element name="title" type="string"></element>
+            <element name="author" type="string"></element>
+        </choice>
+    </complexType>
+
+    <complexType name="AuthorType">
+        <sequence>
+            <element name="lastName" type="string"></element>
+            <element name="firstName" type="string" minOccurs="0"
+                     maxOccurs="1">
+            </element>
+            <element name="initials" type="string"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="BookType">
+        <sequence>
+            <element name="ean13" type="long"></element>
+            <element name="title" type="string"></element>
+            <element name="author" type="tns:AuthorType"></element>
+        </sequence>
+    </complexType>
+</schema>
+
